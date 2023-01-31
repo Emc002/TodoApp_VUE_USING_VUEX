@@ -1,12 +1,14 @@
 <template>
-  <div class="todo-item">
-
-    <div class="todo-item-left">
+  <div class="todo-item" @dblclick="editTodo">
+    <div class="todo-item-left" >
       <input type="checkbox" class="checkbox" v-model="completed" @change="doneEdit">
-      <div v-if="!editing" @dblclick="editTodo" :class="{ completed:completed }"
-        class="todo-item-label">{{title }}</div>
-      <input v-else type="text" class="todo-item-edit"  v-model="title"
+      <div v-if="!editing" :class="{ completed:completed }"
+        class="todo-item-label">{{ title }}</div>
+      <div v-else class="edit-item" >
+      <input type="text" class="todo-item-edit"  v-model="title"
         @blur="doneEdit" @keyup.esc="cancelEdit" @keyup.enter="doneEdit" v-focus>
+        <label class="editing-label">Editing</label>
+      </div>
 
     </div>
     <div class="remove-item" @click="removeTodo(index)">
@@ -17,15 +19,15 @@
 </template>
 
 <script>
+const focus = {
+  mounted: (el) => el.focus()
+}
+
 export default {
   name: 'todo-item',
   props:  {
     todo: {
       type: Object,
-      required: true,
-    },
-    index: {
-      type: Number,
       required: true,
     },
     checkAll: {
@@ -43,18 +45,15 @@ export default {
       'beforeEditCache': ''
     }
   },
+  directives: {
+    focus
+  },
   watch: {
     checkAll(){
       this.completed = this.checkAlls ? true : this.todo.completed
     }
   },
-  directives: {
-    focus: {
-      inserted: function (el) {
-        el.focus()
-      }
-    }
-  },
+
   methods: {
     removeTodo(id) {
       this.$store.dispatch('deleteTodo', id)
@@ -84,13 +83,30 @@ export default {
       this.title = this.beforeEditCache
       this.editing = false
     },
-
-  }
+}
 }
 </script>
 
-<style>
+<style lang="scss">
 .todo-item-left .checkbox{
   padding: 1rem !important;
+}
+
+.todo-item-edit{
+  align-items: center;
+  justify-content: space-between;
+  animation-duration: 0.3s;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 20px -18px;
+  transform: scale(0.95);
+
+  &:focus{
+    border: 2px solid lightgreen;
+    color: lightgreen;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="navbar"><H1>TODO APP</H1></div>
+    <div class="navbar"><h1>TODO APP</h1></div>
     <todolist></todolist>
   </div>
 </template>
@@ -13,36 +13,6 @@ export default {
   components: {
     todolist,
   },
-  data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          title: "Learn Vue JS",
-          completed: true,
-        },
-        {
-          id: 2,
-          title: "Watch netflix",
-          completed: true,
-        },
-        {
-          id: 3,
-          title: "Go shopping",
-          completed: false,
-        },
-        {
-          id: 4,
-          title: "Learn guitar",
-          completed: false,
-        },
-        {
-          id: 5,
-          title: "Send email",
-          completed: false,
-        },
-      ],
-    };
-  },
+  
 };
 </script>

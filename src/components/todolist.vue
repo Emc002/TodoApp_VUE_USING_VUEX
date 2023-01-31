@@ -1,12 +1,13 @@
 <template>
   <div>
     <input type="text" class="todo-input" placeholder="Add todo List" v-model="newTodo" @keyup.enter="addTodo">
-    <div class="box-item" >
-    <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
-    <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining">
-    </todo-item>
-    </transition-group>
-  </div>
+    <div class="box-item">
+      <h3>Double Click to Edit!</h3>
+      <transition-group name="fade" enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
+        <todo-item v-for="todo in todosFiltered" :key="todo.id" :todo="todo" :checkAll="!anyRemaining">
+        </todo-item>
+      </transition-group>
+    </div>
 
     <div class="extra-container">
       <todo-check-all></todo-check-all>
@@ -18,10 +19,10 @@
 
       <div>
         <transition name="fade">
-        <todo-clear-completed></todo-clear-completed>
+          <todo-clear-completed></todo-clear-completed>
         </transition>
       </div>
-    </div> 
+    </div>
   </div>
 </template>
 
@@ -86,6 +87,7 @@ export default {
     outline: 0;
   }
 }
+
 .todo-item {
   margin-bottom: 12px;
   display: flex;
@@ -101,16 +103,17 @@ export default {
   transform: scale(0.95);
 }
 
-.todo-item:hover{
-  background: rgb(242,242,242);
-  background: linear-gradient(90deg, rgba(242,242,242,1) 23%, rgba(144,238,144,1) 80%);
-  border:3px solid #90ee90;
+.todo-item:hover {
+  background: rgb(242, 242, 242);
+  background: linear-gradient(90deg, rgba(242, 242, 242, 1) 23%, rgba(144, 238, 144, 1) 80%);
+  border: 3px solid #90ee90;
   transform: scale(1);
 }
 
 .remove-item {
   cursor: pointer;
   margin-left: 14px;
+
   &:hover {
     color: black;
   }
@@ -157,49 +160,51 @@ export default {
 }
 
 button {
- font-size: 18px;
- letter-spacing: 2px;
- text-transform: uppercase;
- display: inline-block;
- text-align: center;
- font-weight: bold;
- padding: 0.7em 2em;
- border: 3px solid #FF0072;
- border-radius: 2px;
- position: relative;
- box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
- color: #FF0072;
- text-decoration: none;
- transition: 0.3s ease all;
- z-index: 1;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #FF0072;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #FF0072;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
 }
 
 button:before {
- transition: 0.5s all ease;
- position: absolute;
- top: 0;
- left: 50%;
- right: 50%;
- bottom: 0;
- opacity: 0;
- content: '';
- background-color: #FF0072;
- z-index: -1;
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #FF0072;
+  z-index: -1;
 }
 
-button:hover, button:focus {
- color: white;
+button:hover,
+button:focus {
+  color: white;
 }
 
-button:hover:before, button:focus:before {
- transition: 0.5s all ease;
- left: 0;
- right: 0;
- opacity: 1;
+button:hover:before,
+button:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
 }
 
 button:active {
- transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .active {
@@ -216,5 +221,4 @@ button:active {
 .fade-leave-to {
   opacity: 0;
 }
-
 </style>

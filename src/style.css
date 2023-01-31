@@ -75,6 +75,7 @@ a:hover {
 
 .todo-input:focus{
   border:3px solid lightgreen ;
+  transform: scale(1);
 }
 
 .filtered{
@@ -82,4 +83,30 @@ a:hover {
   gap: 1rem;
   position: relative;
   left: 10rem;
+}
+
+.edit-item{
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.editing-label{
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: rgb(255, 255, 126);
+  font-weight: bold;
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
